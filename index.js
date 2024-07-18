@@ -126,7 +126,46 @@ function drawSnake() {
   })
 }
 
-function changeDirection() {}
+function changeDirection(event) {
+  const keyPressed = event.keyCode
+  // save key press codes (number) //
+
+  const UP = 38
+  const DOWN = 40
+  const LEFT = 37
+  const RIGHT = 39
+
+  // determine which way the snake is going
+  const goingUp = yVelocity == -unitSize // is the y velocity of the snake equal to negative unitSize (-25) going up is negative
+  const goingDown = yVelocity == unitSize // is the y velocity of the snake equal to positive unitSize (25) going down is positive
+  const goingRight = xVelocity == unitSize // is the x velocity of the snake equal to positive unitSize (25) going right is positive
+  const goingLeft = xVelocity == -unitSize // is the x velocity of the snake equal to negative unitSize (-25) going left is negative
+
+  // KEY PRESS EVENTS //
+  switch (
+    true // check if above boolean values are true
+  ) {
+    case keyPressed == UP && !goingDown: // makes sure you cant turn directly back on yourself as when the snake touches another part of the snake, it is game over
+      xVelocity = 0 // going up means you are no longer going left or right
+      yVelocity = -unitSize // as we are going up, we want to set the yVelocity to -25 to go up
+      break
+
+    case keyPressed == DOWN && !goingUp: // makes sure you cant turn directly back on yourself as when the snake touches another part of the snake, it is game over
+      xVelocity = 0 // going down means you are no longer going left or right
+      yVelocity = unitSize // as we are going down, we want to set the yVelocity to 25 to go down
+      break
+
+    case keyPressed == LEFT && !goingRight: // makes sure you cant turn directly back on yourself as when the snake touches another part of the snake, it is game over
+      xVelocity = -unitSize // as we are going left, we want to set the xVelocity to -25 to go left
+      yVelocity = 0 // going left means you are no longer going up or down
+      break
+
+    case keyPressed == RIGHT && !goingLeft: // makes sure you cant turn directly back on yourself as when the snake touches another part of the snake, it is game over
+      xVelocity = unitSize // as we are going right, we want to set the xVelocity to 25 to go right
+      yVelocity = 0 // going right means you are no longer going up or down
+      break
+  }
+}
 
 function checkGameOver() {}
 
