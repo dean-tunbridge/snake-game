@@ -9,7 +9,7 @@ const gameWidth = gameBoard.width // attributes assigned inline within canvas in
 const gameHeight = gameBoard.height // attributes assigned inline within canvas in HTML
 const boardBackground = '#8bc400'
 const snakeColor = '#27360d'
-const snakeBorder = 'black'
+const snakeBorder = '#8bc400'
 const foodColor = '#27360d'
 const unitSize = 25 // in pixels
 let running = false //checks if game is running. default is false
@@ -95,7 +95,27 @@ function drawFood() {
   context.fillRect(foodX, foodY, unitSize, unitSize) // fill rectangle (foodX, foodY, width, height)
 }
 
-function moveSnake() {}
+// set head of snake to be location of the 0 index of the snake (the head) at x axis + xVelocity
+// then the same for the y axis
+// add new head to snake using unshift method
+// if else statement to remove tail
+// use pop method to remove tail
+// CHECK IF FOOD WAS EATEN //
+// if the x index 0 of the snake (the head) is equal to foodX,
+// and the y index 0 of the snake (the head) is equal to foodY,
+// that means the snake has eaten.
+function moveSnake() {
+  const head = { x: snake[0].x + xVelocity, y: snake[0].y + yVelocity }
+
+  snake.unshift(head) // adds one index at head in the direction the snake is traveling
+  if (snake[0].x == foodX && snake[0].y == foodY) {
+    score += 1 // adds 1 to score
+    scoreText.textContent = score // updates the score text to the current score
+    createFood() // creates a new food as the previous one has just been eaten
+  } else {
+    snake.pop // removes last index at tail
+  }
+}
 
 function drawSnake() {
   context.fillStyle = snakeColor
