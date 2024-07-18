@@ -1,19 +1,29 @@
+/*
+NOKIA 3310 COLOUR PALETTE 
+BACKGROUND SCREEN: #8BC400
+SNAKE/ LETTERING: #27360D
+*/
+
 #gameContainer {
   text-align: center;
 }
 
 #gameBoard {
   border: 3px solid;
+  background-color: #8bc400;
 }
 
-#score {
-  font-family: 'permanent Marker', cursive;
+#scoreText {
+  font-family: 'Silkscreen', sans-serif;
   font-size: 100px;
+  color: #27360d;
 }
 
 #resetButton {
-  font-family: 'permanent Marker', cursive;
+  font-family: 'Silkscreen', sans-serif;
   font-size: 25px;
+  color: #27360d;
+  background-color: #8bc400;
   width: 100px;
   height: 50px;
   border: 4px solid;
