@@ -7,7 +7,7 @@ const scoreText = document.querySelector('#scoreText')
 const resetButton = document.querySelector('#resetButton')
 const gameWidth = gameBoard.width // attributes assigned inline within canvas in HTML
 const gameHeight = gameBoard.height // attributes assigned inline within canvas in HTML
-const boardBackground = '#8bc400'
+let boardBackground = '#8bc400'
 const snakeColor = '#27360d'
 const snakeBorder = '#8bc400'
 const foodColor = '#27360d'
@@ -18,7 +18,7 @@ let yVelocity = 0 // y velocity is how far we move n the y axis every single gam
 let foodX // Will be randomly assigned later.
 let foodY // Will be randomly assigned later.
 let score = 0
-
+let snakeSpeed = 100
 // -- CREATING THE SNAKE -- //
 // snake is an array of objects. The snake starts off with 5 body parts.
 // the snake will start in the top left corner. All body parts on the Y axis are the same to start.
@@ -63,7 +63,7 @@ function nextTick() {
       drawSnake()
       checkGameOver()
       nextTick()
-    }, 100)
+    }, snakeSpeed)
   } else {
     displayGameOver()
   }
@@ -106,6 +106,7 @@ function moveSnake() {
 
   snake.unshift(head) // adds one index at head in the direction the snake is traveling
   if (snake[0].x == foodX && snake[0].y == foodY) {
+    snakeSpeed -= 2 // increases snake speed by 2ms
     score += 1 // adds 1 to score
     scoreText.textContent = score // updates the score text to the current score
     createFood() // creates a new food as the previous one has just been eaten
@@ -192,10 +193,15 @@ function checkGameOver() {
 }
 
 function displayGameOver() {
-  context.font = "50px 'Silkscreen'"
+  context.font = "60px 'Silkscreen'"
   context.fillStyle = '#27360d'
   context.textAlign = 'center'
   context.fillText('GAME OVER!', gameWidth / 2, gameHeight / 2) // display game over text in centre of screen
+  // DARK SOULS LIKE GAME OVER SCREEN //
+  //context.font = "70px 'EB Garamond'"
+  //context.fillStyle = 'red'
+  //context.fillText('YOU DIED', gameWidth / 2, gameHeight / 2) // display game over text in centre of screen
+
   running = false
 }
 
@@ -211,6 +217,7 @@ function resetGame() {
     { x: unitSize, y: 0 },
     { x: 0, y: 0 },
   ]
+
   // invoke the gameStart function again
   gameStart()
 }
