@@ -1,5 +1,6 @@
 // -- GAME SETUP -- //
 // -- variables -- //
+
 const gameBoard = document.querySelector('#gameBoard')
 const context = gameBoard.getContext('2d') // sets context to 2d
 const scoreText = document.querySelector('#scoreText')
@@ -36,8 +37,12 @@ let snake = [
 window.addEventListener('keydown', changeDirection)
 resetButton.addEventListener('click', resetGame)
 
+// -- INVOKE FUNCTIONS FOR GAME -- //
+
 gameStart()
 createFood()
+drawFood()
+
 // -- GAME FUNCTIONS -- //
 
 function gameStart() {}
@@ -56,10 +61,13 @@ function createFood() {
     return randomNumber
   }
   foodX = randomFood(0, gameWidth - unitSize) //(min: 0, max: gameWidth - unitSize)
-  console.log(foodX)
+  foodY = randomFood(0, gameWidth - unitSize) //(min: 0, max: gameWidth - unitSize)
 }
 
-function drawFood() {}
+function drawFood() {
+  context.fillStyle = foodColor // sets equal to foodColor variable
+  context.fillRect(foodX, foodY, unitSize, unitSize) // fill rectangle (foodX, foodY, width, height)
+}
 
 function moveSnake() {}
 
