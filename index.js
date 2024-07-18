@@ -7,6 +7,7 @@ const scoreText = document.querySelector('#scoreText')
 const resetButton = document.querySelector('#resetButton')
 const gameWidth = gameBoard.width // attributes assigned inline within canvas in HTML
 const gameHeight = gameBoard.height // attributes assigned inline within canvas in HTML
+const boardBackground = '#8bc400'
 const snakeColor = '#27360d'
 const snakeBorder = 'black'
 const foodColor = '#27360d'
@@ -71,7 +72,10 @@ function nextTick() {
   }
 }
 
-function clearBoard() {}
+function clearBoard() {
+  context.fillStyle = boardBackground
+  context.fillRect(0, 0, gameWidth, gameHeight) // puts snake back into top left of screen
+}
 
 function createFood() {
   function randomFood(min, max) {
