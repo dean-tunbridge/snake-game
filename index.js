@@ -40,12 +40,18 @@ resetButton.addEventListener('click', resetGame)
 // -- INVOKE FUNCTIONS FOR GAME -- //
 
 gameStart()
-createFood()
-drawFood()
+//createFood()
+//drawFood()
 
 // -- GAME FUNCTIONS -- //
 
-function gameStart() {}
+function gameStart() {
+  running = true // sets the game running variable to true
+  scoreText.textContent = score // sets score to whatever the current score is. starts on 0
+  createFood() // invokes createFood function
+  drawFood() // invokes drawFood function
+  nextTick() // invoke nextTick function, which is what we will do every round, every time we update
+}
 
 function nextTick() {}
 
