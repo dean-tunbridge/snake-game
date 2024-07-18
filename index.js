@@ -38,11 +38,8 @@ let snake = [
 window.addEventListener('keydown', changeDirection)
 resetButton.addEventListener('click', resetGame)
 
-// -- INVOKE FUNCTIONS FOR GAME -- //
-
+// start game //
 gameStart()
-//createFood()
-//drawFood()
 
 // -- GAME FUNCTIONS -- //
 
@@ -55,7 +52,7 @@ function gameStart() {
 }
 
 // next tick function will check inf game is running. If iot is, it will set a timeout, then call the functions below.
-// It is current set to run every 75ms
+// It is current set to run every 100ms
 
 function nextTick() {
   if (running) {
@@ -66,7 +63,7 @@ function nextTick() {
       drawSnake()
       checkGameOver()
       nextTick()
-    }, 75)
+    }, 100)
   } else {
     displayGameOver()
   }
@@ -113,7 +110,7 @@ function moveSnake() {
     scoreText.textContent = score // updates the score text to the current score
     createFood() // creates a new food as the previous one has just been eaten
   } else {
-    snake.pop // removes last index at tail
+    snake.pop() // removes last index at tail
   }
 }
 
@@ -167,7 +164,32 @@ function changeDirection(event) {
   }
 }
 
-function checkGameOver() {}
+// GAME OVER //
+// there are two main ways to lose a game of snake.
+// firstly it is by crossing the border of the game, or bumping into the edge of the map essentially
+// the second is bumping into another segment of the snake
+
+function checkGameOver() {
+  switch (true) {
+    case snake[0].x < 0: //this means we went over the left border
+      running = false
+      break
+    case snake[0].x >= gameWidth: //this means we went over the right border
+      running = false
+      break
+    case snake[0].y < 0: //this means we went over the top border
+      running = false
+      break
+    case snake[0].y >= gameHeight: //this means we went over the bottom border
+      running = false
+      break
+  }
+  for (let i = 1; i < snake.length; i += 1) {
+    // for loop starts i at 1 so it means any snake part that isn't the head [0]
+    // if the coordinates of the snake head (snake[0]) are equal to the coordinates of any other part of the snake (snake[i]) it means the game is over
+    if (snake[i].x == snake[0].x && snake[i].y == snake[0].y) running = false
+  }
+}
 
 function displayGameOver() {}
 
