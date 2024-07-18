@@ -53,7 +53,23 @@ function gameStart() {
   nextTick() // invoke nextTick function, which is what we will do every round, every time we update
 }
 
-function nextTick() {}
+// next tick function will check inf game is running. If iot is, it will set a timeout, then call the functions below.
+// It is current set to run every 75ms
+
+function nextTick() {
+  if (running) {
+    setTimeout(() => {
+      clearBoard()
+      drawFood()
+      moveSnake()
+      drawSnake()
+      checkGameOver()
+      nextTick()
+    }, 75)
+  } else {
+    displayGameOver()
+  }
+}
 
 function clearBoard() {}
 
