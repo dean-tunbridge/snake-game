@@ -97,7 +97,14 @@ function drawFood() {
 
 function moveSnake() {}
 
-function drawSnake() {}
+function drawSnake() {
+  context.fillStyle = snakeColor
+  context.strokeStyle = snakeBorder
+  snake.forEach((snakePart) => {
+    context.fillRect(snakePart.x, snakePart.y, unitSize, unitSize) // each snake part has an x and y coordinate. This begins to fill it out. Width and height are set to unitSize
+    context.strokeRect(snakePart.x, snakePart.y, unitSize, unitSize) // fills border in
+  })
+}
 
 function changeDirection() {}
 
