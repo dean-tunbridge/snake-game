@@ -37,17 +37,38 @@ window.addEventListener('keydown', changeDirection)
 resetButton.addEventListener('click', resetGame)
 
 gameStart()
-
+createFood()
 // -- GAME FUNCTIONS -- //
 
 function gameStart() {}
+
 function nextTick() {}
+
 function clearBoard() {}
-function createFood() {}
+
+function createFood() {
+  function randomFood(min, max) {
+    const randomNumber =
+      Math.round((Math.random() * (max - min) + min) / unitSize) * 25
+    // generates random number.
+    // divides by unit size which is 25, so the width of 500 / unitSize which is 25 = 25 which now generates a number between 0 - 24.
+    // * 25 accurately places the food into the top left of one of the spaces (console.log prints a random number that is always divisible by 25)
+    return randomNumber
+  }
+  foodX = randomFood(0, gameWidth - unitSize) //(min: 0, max: gameWidth - unitSize)
+  console.log(foodX)
+}
+
 function drawFood() {}
+
 function moveSnake() {}
+
 function drawSnake() {}
+
 function changeDirection() {}
+
 function checkGameOver() {}
+
 function displayGameOver() {}
+
 function resetGame() {}
