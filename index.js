@@ -191,6 +191,12 @@ function checkGameOver() {
   }
 }
 
-function displayGameOver() {}
+function displayGameOver() {
+  context.font = "50px 'Silkscreen'"
+  context.fillStyle = '#27360d'
+  context.textAlign = 'center'
+  context.fillText('GAME OVER!', gameWidth / 2, gameHeight / 2)
+  running = false
+}
 
 function resetGame() {}
