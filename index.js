@@ -197,6 +197,7 @@ function displayGameOver() {
   context.fillStyle = '#27360d'
   context.textAlign = 'center'
   context.fillText('GAME OVER!', gameWidth / 2, gameHeight / 2) // display game over text in centre of screen
+
   // DARK SOULS LIKE GAME OVER SCREEN //
   //context.font = "70px 'EB Garamond'"
   //context.fillStyle = 'red'
